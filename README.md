@@ -139,3 +139,7 @@ python -m pytest -q
 - [PRD.md](PRD.md)
 - [design.md](design.md)
 - [architecture.md](architecture.md)
+
+## 🎥 Project Demo
+https://www.loom.com/share/b335c7534e884739881918621422e93e
+
