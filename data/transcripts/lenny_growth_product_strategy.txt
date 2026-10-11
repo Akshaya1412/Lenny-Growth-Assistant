@@ -1,0 +1,7 @@
+Product strategy is best when it starts with a real user problem and not a clever pitch. The strongest teams talk to customers early, write down what they say, and look for patterns in the frustration. The product is not an opinion; it is a system that solves a specific, observable bottleneck.
+
+When we talk about product-market fit, I do not think of one magical moment. I think of a loop: you listen to users, ship a small experiment, watch how they behave, and then keep learning. The loop compounds. A weak company waits for clarity. A strong company creates more clarity by making more observations.
+
+Distribution is product. If no one can find the value, the value does not matter enough yet. Growth is not just acquisition channels; it is the way product decisions change what the user sees and repeats. The most durable growth engines come from sharing a product experience that is easy to understand and easy to recommend.
+
+If you want to build a serious moat, start by learning how users talk about the problem differently than the team talks about it. The gap is where the product opportunity lives.

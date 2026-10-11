@@ -1,0 +1,7 @@
+The heart of growth is a learning system. If you are not shipping experiments, you are mostly guessing. We should measure the loop that drives retention and activation, not just the loop that produces an impressive vanity metric. A dashboard full of top-of-funnel numbers is not a growth strategy.
+
+The most valuable experiments are tiny, specific, and actionable. They tell us something meaningful about customer behavior. A bad experiment often asks the wrong question. A good experiment reveals whether the core value proposition actually resonates.
+
+A healthy product team asks: what is the small creative action that gets more people to a meaningful moment? What is the next user action that creates trust, habit, or an aha moment? When those questions are answered well, the company gets signals that compound.
+
+The goal is not to avoid mistakes. The goal is to fail cheaply and learn quickly. Product and growth teams that build this habit become faster and more grounded over time.

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lenny Growth Assistant</title>
+    <meta name="description" content="Source-grounded AI assistant for Lenny growth and product conversations." />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell" id="appShell">
+      <aside class="sidebar" id="sidebar" aria-label="Conversation sidebar">
+        <div class="sidebar-brand-row">
+          <a class="brand" href="/" aria-label="Lenny Growth Assistant home">
+            <span class="brand-mark" aria-hidden="true">L</span>
+            <span class="brand-name">Lenny Growth Assistant</span>
+          </a>
+          <button class="icon-button sidebar-collapse" id="collapseSidebarBtn" type="button" aria-label="Collapse sidebar" title="Collapse sidebar">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4" width="17" height="16" rx="2.5"></rect><path d="M9 4v16"></path><path d="m15 9-3 3 3 3"></path></svg>
+          </button>
+        </div>
+
+        <button id="newSessionBtn" class="new-chat-button" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+          <span>New chat</span>
+        </button>
+
+        <label class="session-search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 4.5 4.5"></path></svg>
+          <span class="sr-only">Search conversations</span>
+          <input id="sessionSearch" type="search" placeholder="Search chats" autocomplete="off" />
+          <kbd>/</kbd>
+        </label>
+
+        <div id="sessionsList" class="conversation-list" aria-live="polite"></div>
+
+        <div class="sidebar-footer">
+          <span class="workspace-avatar" aria-hidden="true">L</span>
+          <span class="workspace-label"><strong>Growth workspace</strong><small>Local research assistant</small></span>
+          <span class="local-indicator" title="Local workspace" aria-label="Local workspace"></span>
+        </div>
+      </aside>
+
+      <button id="sidebarBackdrop" class="sidebar-backdrop" type="button" aria-label="Close conversation menu" tabindex="-1"></button>
+
+      <main class="chat-shell">
+        <header class="chat-header">
+          <div class="header-leading">
+            <button class="icon-button mobile-menu-button" id="mobileSidebarBtn" type="button" aria-label="Open conversations" title="Open conversations">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+            <div class="header-titles">
+              <span class="header-app-name">Lenny Growth Assistant</span>
+              <h1 id="currentTitle">New chat</h1>
+            </div>
+          </div>
+          <div class="header-actions">
+            <div class="provider-control">
+              <span class="provider-status-dot" id="providerStatusDot" aria-hidden="true"></span>
+              <label class="sr-only" for="providerSelect">Model provider</label>
+              <select id="providerSelect" aria-label="Select model provider"></select>
+              <span id="providerStatus" class="provider-status">Checking</span>
+            </div>
+            <button class="icon-button theme-button" id="themeToggle" type="button" aria-label="Switch to dark theme" title="Switch theme">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.3A8.4 8.4 0 0 1 8.7 3.8 8.5 8.5 0 1 0 20.2 15.3Z"></path></svg>
+            </button>
+            <button class="open-artifact-button" id="openArtifactBtn" type="button" hidden>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16v13H4zM8 9h8M8 12h8M8 15h5"></path></svg>
+              <span>Open artifact</span>
+            </button>
+          </div>
+        </header>
+
+        <section class="conversation-scroll" id="conversationScroll" aria-label="Conversation">
+          <div id="messages" class="messages" aria-live="polite" aria-atomic="false"></div>
+        </section>
+
+        <div class="composer-dock">
+          <form id="chatForm" class="composer" aria-label="Chat composer">
+            <label class="sr-only" for="promptInput">Message Lenny Growth Assistant</label>
+            <textarea id="promptInput" rows="1" placeholder="Message Lenny Growth Assistant" autocomplete="off"></textarea>
+            <div class="composer-bottom-row">
+              <div class="composer-tools">
+                <button id="artifactBtn" class="composer-tool" type="button" title="Generate a grounded HTML artifact">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5h14v15H5zM8 8h8M8 11.5h8M8 15h5"></path></svg>
+                  <span>Create artifact</span>
+                </button>
+                <span class="composer-context">Answers grounded in the transcript library</span>
+              </div>
+              <button type="submit" class="send-button" aria-label="Send message" title="Send message">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"></path></svg>
+              </button>
+            </div>
+          </form>
+          <p class="composer-disclaimer">AI-generated answers may contain errors. Check cited source material.</p>
+        </div>
+      </main>
+
+      <aside class="artifact-panel" id="artifactPanel" aria-label="Artifact viewer" hidden>
+        <header class="artifact-header">
+          <div>
+            <span class="artifact-kicker">Workspace</span>
+            <h2 id="artifactTitle">Generated artifact</h2>
+          </div>
+          <div class="artifact-header-actions">
+            <button class="icon-button" type="button" data-action="copy-artifact" aria-label="Copy artifact" title="Copy artifact">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="11" height="12" rx="2"></rect><path d="M16 8V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2"></path></svg>
+            </button>
+            <button class="icon-button" type="button" data-action="download-artifact" aria-label="Download artifact" title="Download artifact">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v3h14v-3"></path></svg>
+            </button>
+            <button class="icon-button" id="closeArtifactBtn" type="button" aria-label="Close artifact" title="Close artifact">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg>
+            </button>
+          </div>
+        </header>
+        <div class="artifact-tabs" role="tablist" aria-label="Artifact view modes">
+          <button type="button" class="tab-button active" data-view="preview" role="tab" aria-selected="true">Preview</button>
+          <button type="button" class="tab-button" data-view="code" role="tab" aria-selected="false">HTML</button>
+        </div>
+        <div id="artifactViewport" class="artifact-viewport" aria-live="polite">
+          <div id="artifactEmptyState" class="artifact-empty-state">
+            <span class="artifact-empty-mark" aria-hidden="true">A</span>
+            <h3>No artifact yet</h3>
+            <p>Create an artifact from a grounded response to review it here.</p>
+          </div>
+          <iframe id="artifactFrame" title="Sanitized artifact preview" sandbox="allow-same-origin" hidden></iframe>
+          <pre id="artifactCode" class="artifact-code" hidden></pre>
+        </div>
+      </aside>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
